@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Service
 public class InventoryService {
@@ -21,7 +22,11 @@ public class InventoryService {
         return saved!=null;
     }
     public boolean isExists(String name) {
-        return false;
+        return !inventoryRepository.findAllByName(name).isEmpty();
+    }
+
+    public List<Inventory> findAll(){
+        return inventoryRepository.findAll();
     }
 
     @Data
@@ -34,13 +39,7 @@ public class InventoryService {
         @Size(max = 100, min = 10, message ="Please provide the name in the range of 10 to 100")
         String name;
         String description;
-    }
-    private class InventoryTransformer {
-        public Inventory tranform(InventoryDTO inventoryDTO){
-            return Inventory.builder()
-                    .name(inventoryDTO.getName())
-                    .description(inventoryDTO.getDescription())
-                    .build();
-        }
+        Integer code;
+        Integer quantity;
     }
 }
