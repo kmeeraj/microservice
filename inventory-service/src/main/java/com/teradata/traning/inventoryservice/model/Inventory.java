@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode
-@Getter
+@Data
 public class Inventory {
     @Id
     @GeneratedValue
