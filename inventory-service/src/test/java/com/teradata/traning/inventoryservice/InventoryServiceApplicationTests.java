@@ -23,10 +23,22 @@ public class InventoryServiceApplicationTests {
     }
 
     @Test
+    public void shouldFindInventoryByName(){
+        Inventory inventory = Inventory.builder()
+                .name("Samsung")
+                .description("testndroid screen, 5.3 inches")
+                .build();
+        inventoryRepository.save(inventory);
+        List<Inventory> allInventory = inventoryRepository.findAllByName(inventory.getName());
+
+        Assertions.assertThat(allInventory.stream().findFirst().equals(inventory));
+    }
+
+    @Test
     public void shouldSaveInventory(){
         Inventory inventory = Inventory.builder()
                 .name("Samsung")
-                .description("test")
+                .description("testndroid screen, 5.3 inches")
                 .build();
         inventoryRepository.save(inventory);
         List<Inventory> allInventory = inventoryRepository.findAll();
