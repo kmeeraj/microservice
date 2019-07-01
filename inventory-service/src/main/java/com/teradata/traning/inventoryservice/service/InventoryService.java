@@ -37,7 +37,10 @@ public class InventoryService {
     }
     private class InventoryTransformer {
         public Inventory tranform(InventoryDTO inventoryDTO){
-            return null;
+            return Inventory.builder()
+                    .name(inventoryDTO.getName())
+                    .description(inventoryDTO.getDescription())
+                    .build();
         }
     }
 }
