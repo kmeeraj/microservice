@@ -1,13 +1,12 @@
 server:
-  port: 8001
+  port: 8082
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka
-
 spring:
   application:
-    name: inventory-service
+    name: order-service
   datasource:
     url: "jdbc:h2:mem:test;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;INIT=CREATE SCHEMA IF NOT EXISTS teradata"
     username: "sa"
@@ -18,3 +17,22 @@ spring:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
+  sleuth:
+    sampler:
+      probability: 1.0
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+kafka:
+  bootstrapAddress: localhost:9092
+
+message:
+  topic:
+    name: edureka
+
+order:
+  topic:
+    name: order

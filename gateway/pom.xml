@@ -8,10 +8,10 @@
         <version>2.1.6.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.teradata.traning</groupId>
-    <artifactId>inventory-service</artifactId>
+    <groupId>com.teradata.training</groupId>
+    <artifactId>gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>inventory-service</name>
+    <name>gateway</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

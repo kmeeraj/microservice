@@ -1,19 +1,44 @@
-package com.teradata.traning.inventoryservice.controller;
+package com.teradata.traning.inventoryservice.resource;
 
 import com.teradata.traning.inventoryservice.model.Inventory;
 import com.teradata.traning.inventoryservice.service.InventoryService;
 import com.teradata.traning.inventoryservice.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-public class InventoryRestController {
+@RequestMapping(value = "inventory")
+public class InventoryResource {
 
     @Autowired
     InventoryService inventoryService;
+
+    @PostMapping
+    @RequestMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    ResponseEntity<Boolean> createInventory(InventoryService.InventoryDTO inventoryDTO){
+        boolean saved = inventoryService.saveInventory(inventoryDTO);
+        if(saved){
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        }else {
+            throw new InventoryNoCreatedException();
+        }
+    }
+
+    private class InventoryNoCreatedException extends RuntimeException {
+
+    }
+
+    @GetMapping
+    @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> isExists(@RequestParam String name) {
+        boolean exists = inventoryService.isExists(name);
+        return ResponseEntity.ok(exists);
+    }
 
     @Autowired
     OrderService orderService;

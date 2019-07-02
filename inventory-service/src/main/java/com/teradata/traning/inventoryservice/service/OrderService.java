@@ -20,7 +20,7 @@ public class OrderService {
     InventoryRepository inventoryRepository;
 
     public boolean saveOrder(OrderDTO orderDTO){
-        Order order = new Transformer().transfomr(orderDTO);
+        Order order = new Transformer().transfomer(orderDTO);
         inventoryRepository.save(order.getProductDetail());
         Order saved = orderRepository.save(order);
         return saved!=null;
@@ -45,7 +45,7 @@ public class OrderService {
     }
 
     private class Transformer {
-        public Order transfomr(OrderDTO orderDTO){
+        public Order transfomer(OrderDTO orderDTO){
             Inventory inventoryEntity = new InventoryTransformer().tranform(orderDTO.getProductDetail());
             return Order.builder()
                     .userId(orderDTO.getUserId())

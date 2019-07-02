@@ -1,4 +1,4 @@
-package com.teradata.traning.inventoryservice.controller;
+package com.teradata.traning.inventoryservice.resource;
 
 import com.teradata.traning.inventoryservice.model.Order;
 import com.teradata.traning.inventoryservice.service.OrderService;
